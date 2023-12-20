@@ -26,7 +26,7 @@
 		<property name="confirmText" display-name-key="Confirm text" of-type="SingleLine.Text" usage="input" required="false" default-value="Confirm" />
 		<property name="clearText" display-name-key="Clear text" of-type="SingleLine.Text" usage="input" required="false" default-value="Clear" />
 		<property name="showCloseButton" display-name-key="Show close button" of-type="TwoOptions" usage="input" required="false" default-value="true" />
-		<property name="name" display-name-key="Name" of-type="SingleLine.Text" usage="output" required="false" />
+		<property name="name" display-name-key="Name" of-type="SingleLine.Text" usage="output" required="true" />
 		<property name="value" display-name-key="Value" of-type="SingleLine.Text" usage="output" required="false" />
 		<!--
 		Property node's of-type attribute can be of-type-group attribute.
