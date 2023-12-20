@@ -7,3 +7,19 @@
 .SpeechToText * {
   box-sizing: border-box;
 }
+
+.recording {
+  animation: recording_pulse 2s ease-out infinite;
+}
+
+@keyframes recording_pulse {
+  0% {
+    background-color: #c81210;
+  }
+  50% {
+    background-color: #960d0b;
+  }
+  100% {
+    background-color: #c81210;
+  }
+}

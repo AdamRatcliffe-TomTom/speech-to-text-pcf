@@ -1,13 +1,13 @@
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
+import { IControlEvent } from "./IControlEvent";
 import Control from "./components/Control";
 import * as React from "react";
 
 export class SpeechToText
   implements ComponentFramework.ReactControl<IInputs, IOutputs>
 {
+  private event: IControlEvent;
   private notifyOutputChanged: () => void;
-
-  private text: string = "";
 
   /**
    * Empty constructor.
@@ -52,6 +52,8 @@ export class SpeechToText
     );
     const confirmText = this.getRawParameter(context, "confirmText");
     const clearText = this.getRawParameter(context, "clearText");
+    const showCloseButton = this.getRawParameter(context, "showCloseButton");
+
     const props = {
       width,
       height,
@@ -60,7 +62,9 @@ export class SpeechToText
       stopRecordingText,
       confirmText,
       clearText,
-      onChange: this.handleChange
+      showCloseButton,
+      onChange: this.handleChange,
+      onClose: this.handleClose
     };
 
     return React.createElement(Control, props);
@@ -79,7 +83,17 @@ export class SpeechToText
   }
 
   private handleChange = (value: string) => {
-    this.text = value;
+    this.event = {
+      name: "OnChange",
+      value
+    };
+
+    this.notifyOutputChanged();
+  };
+
+  private handleClose = () => {
+    this.event = { name: "OnClose" };
+
     this.notifyOutputChanged();
   };
 
@@ -88,9 +102,7 @@ export class SpeechToText
    * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as “bound” or “output”
    */
   public getOutputs(): IOutputs {
-    return {
-      text: this.text
-    };
+    return this.event;
   }
 
   /**

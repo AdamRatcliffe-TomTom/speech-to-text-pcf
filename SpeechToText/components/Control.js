@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles, DefaultButton } from "@fluentui/react";
 import { Mic24Regular } from "@fluentui/react-icons";
+import CrossIcon from "../icons/CrossIcon";
 import Header from "./Header";
 import Footer from "./Footer";
 import useSpeech from "../hooks/useSpeech";
 
-const useStyles = ({ width, height, isRecording }) =>
+const useStyles = ({ width, height }) =>
   makeStyles((theme) => ({
     root: {
       display: "flex",
@@ -45,11 +46,16 @@ const useStyles = ({ width, height, isRecording }) =>
         fontWeight: 400
       }
     },
-    recordButton: {
-      backgroundColor: isRecording ? "#c81210" : "#0089C9",
+    closeButton: {
+      width: 40,
+      height: 40,
+      background: "transparent",
+      border: "1px solid #B9E7FE",
+      borderRadius: "50%",
+      minWidth: "auto",
+      padding: 0,
       ":hover, :active": {
-        color: "white",
-        backgroundColor: isRecording ? "#aa0f0d" : "#0074aa"
+        backgroundColor: "rgba(0,0,0,0.1)"
       }
     },
     text: {
@@ -61,7 +67,7 @@ const useStyles = ({ width, height, isRecording }) =>
       border: "none",
       resize: "none",
       fontFamily: "Noto Sans",
-      fontSize: 15,
+      fontSize: 14,
       lineHeight: "1.5",
       overflowY: "auto",
       outline: "none",
@@ -83,11 +89,13 @@ const Control = ({
   stopRecordingText,
   confirmText,
   clearText,
-  onChange
+  showCloseButton,
+  onChange,
+  onClose
 }) => {
   const { text, setText, startRecognition, stopRecognition } = useSpeech();
   const [isRecording, setRecording] = useState(false);
-  const classes = useStyles({ width, height, isRecording })();
+  const classes = useStyles({ width, height })();
   const recordingButtonText = isRecording
     ? stopRecordingText
     : startRecordingText;
@@ -117,16 +125,27 @@ const Control = ({
     setText("");
   };
 
+  const handleClose = () => {
+    onClose();
+  };
+
   return (
     <div className={`SpeechToText ${classes.root}`}>
       <Header>
         <DefaultButton
-          className={`${classes.primaryButton} ${classes.recordButton}`}
+          className={`${classes.primaryButton} ${isRecording && "recording"}`}
           onRenderIcon={() => <Mic24Regular color="white" />}
           onClick={handleToggleRecording}
         >
           {recordingButtonText}
         </DefaultButton>
+        {showCloseButton && (
+          <DefaultButton
+            className={classes.closeButton}
+            onRenderIcon={() => <CrossIcon />}
+            onClick={handleClose}
+          />
+        )}
       </Header>
       <textarea
         className={classes.text}

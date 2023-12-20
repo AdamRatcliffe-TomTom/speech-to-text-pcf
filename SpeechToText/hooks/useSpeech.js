@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
 let recognition;
 
 const useSpeech = () => {
@@ -8,10 +11,9 @@ const useSpeech = () => {
   const startRecognition = ({
     continuous = true,
     interimResults = true,
-    lang = "en-GB"
+    lang = "en-US"
   } = {}) => {
-    recognition = new (window.SpeechRecognition ||
-      window.webkitSpeechRecognition)();
+    recognition = new SpeechRecognition();
 
     recognition.continuous = continuous;
     recognition.interimResults = interimResults;
@@ -22,9 +24,6 @@ const useSpeech = () => {
       const transcript = Array.from(event.results)
         .map((result) => result[0].transcript)
         .join("");
-
-      console.log("transcript: ", transcript);
-
       setText(transcript);
     });
   };

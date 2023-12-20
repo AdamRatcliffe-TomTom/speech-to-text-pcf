@@ -11,6 +11,7 @@
     <Name>speech-to-text-pcf</Name>
     <ProjectGuid>5a273695-6263-400b-8a92-7eb1402c74d8</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
+    <PcfBuildMode>production</PcfBuildMode>
   </PropertyGroup>
 
   <PropertyGroup>

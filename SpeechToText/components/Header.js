@@ -5,8 +5,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "flex-start",
-    gap: theme.spacing.m,
+    justifyContent: "space-between",
     padding: theme.spacing.m,
     backgroundColor: "rgba(255, 255, 255, 0.10)"
   }
