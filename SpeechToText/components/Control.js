@@ -143,7 +143,7 @@ const Control = ({
         {showCloseButton && (
           <DefaultButton
             className={classes.closeButton}
-            onRenderIcon={() => <CrossIcon />}
+            onRenderIcon={() => <CrossIcon size={20} />}
             onClick={handleClose}
           />
         )}
