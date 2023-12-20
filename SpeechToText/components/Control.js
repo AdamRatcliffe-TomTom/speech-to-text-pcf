@@ -119,11 +119,14 @@ const Control = ({
   };
 
   const handleConfirm = () => {
-    toggleRecording();
+    stopRecognition();
+    setRecording(false);
     onChange(text);
   };
 
   const handleClear = () => {
+    stopRecognition();
+    setRecording(false);
     setText("");
   };
 
