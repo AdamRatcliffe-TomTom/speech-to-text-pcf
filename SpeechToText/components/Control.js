@@ -100,7 +100,7 @@ const Control = ({
     ? stopRecordingText
     : startRecordingText;
 
-  const handleToggleRecording = () => {
+  const toggleRecording = () => {
     const recording = !isRecording;
 
     if (recording) {
@@ -118,6 +118,7 @@ const Control = ({
   };
 
   const handleConfirm = () => {
+    toggleRecording();
     onChange(text);
   };
 
@@ -135,7 +136,7 @@ const Control = ({
         <DefaultButton
           className={`${classes.primaryButton} ${isRecording && "recording"}`}
           onRenderIcon={() => <Mic24Regular color="white" />}
-          onClick={handleToggleRecording}
+          onClick={toggleRecording}
         >
           {recordingButtonText}
         </DefaultButton>
