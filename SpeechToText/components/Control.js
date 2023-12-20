@@ -68,6 +68,7 @@ const useStyles = ({ width, height }) =>
       resize: "none",
       fontFamily: "Noto Sans",
       fontSize: 14,
+      fontWeight: 400,
       lineHeight: "1.5",
       overflowY: "auto",
       outline: "none",
