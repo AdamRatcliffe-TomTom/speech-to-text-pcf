@@ -46,6 +46,8 @@ const useSpeech = () => {
   };
 
   const stopRecognition = () => {
+    // Should call stop() but a bug with the web-speech-cognitive-services
+    // library requires abort() instead
     recognition?.abort();
   };
 
