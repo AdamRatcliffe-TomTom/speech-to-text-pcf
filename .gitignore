@@ -16,3 +16,4 @@
 # MSBuild Binary and Structured Log
 *.binlog
 yarn.lock
+package-lock.json
