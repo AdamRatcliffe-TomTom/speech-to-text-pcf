@@ -14,7 +14,8 @@ const useStyles = ({ width, height }) =>
       width: `${width}px`,
       height: `${height}px`,
       backgroundColor: "#152C39",
-      borderRadius: 10
+      borderRadius: 10,
+      boxShadow: "0 0 25px 0 rgba(0, 0, 0, 0.15)"
     },
     primaryButton: {
       padding: `${theme.spacing.l1} ${theme.spacing.m}`,
