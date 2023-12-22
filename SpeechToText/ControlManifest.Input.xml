@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-	<control namespace="tomtom" constructor="SpeechToText" version="1.1.1" display-name-key="SpeechToText" description-key="SpeechToText description" control-type="virtual">
+	<control namespace="tomtom" constructor="SpeechToText" version="1.2.1" display-name-key="SpeechToText" description-key="SpeechToText description" control-type="virtual">
 		<!--
 		external-service-usage node declares whether this 3rd party PCF control is using external service or not, if yes, this control will be considered as premium and please also add the external domain it is using.
 		If it is not using any external service, please set the enabled="false" and DO NOT add any domain below. The "enabled" will be false by default.
@@ -27,7 +27,7 @@
 		<property name="clearText" display-name-key="Clear text" of-type="SingleLine.Text" usage="input" required="false" default-value="Clear" />
 		<property name="showCloseButton" display-name-key="Show close button" of-type="TwoOptions" usage="input" required="false" default-value="true" />
 		<property name="name" display-name-key="Name" of-type="SingleLine.Text" usage="output" required="true" />
-		<property name="value" display-name-key="Value" of-type="SingleLine.Text" usage="output" required="false" />
+		<property name="value" display-name-key="Value" of-type="SingleLine.Text" usage="bound" required="false" />
 		<!--
 		Property node's of-type attribute can be of-type-group attribute.
 		Example:

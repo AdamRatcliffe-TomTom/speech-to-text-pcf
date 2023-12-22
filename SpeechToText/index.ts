@@ -41,6 +41,7 @@ export class SpeechToText
   ): React.ReactElement {
     const width = context.mode.allocatedWidth;
     const height = context.mode.allocatedHeight;
+    const value = this.getRawParameter(context, "value");
     const language = this.getRawParameter(context, "language");
     const startRecordingText = this.getRawParameter(
       context,
@@ -57,6 +58,7 @@ export class SpeechToText
     const props = {
       width,
       height,
+      value,
       language,
       startRecordingText,
       stopRecordingText,

@@ -9,6 +9,7 @@ import {
 let SpeechRecognition;
 let recognition;
 let stopping = false;
+let speechStarted = false;
 let haveFinalResult = false;
 
 const useSpeech = () => {
@@ -39,6 +40,10 @@ const useSpeech = () => {
     recognition.lang = lang;
     recognition.start();
 
+    recognition.addEventListener("speechstart", () => {
+      speechStarted = true;
+    });
+
     recognition.addEventListener("result", (event) => {
       const resultsArray = Array.from(event.results);
       const transcript = resultsArray
@@ -51,6 +56,7 @@ const useSpeech = () => {
       if (stopping && haveFinalResult) {
         recognition?.abort();
         stopping = false;
+        speechStarted = false;
       }
     });
   };
@@ -59,11 +65,15 @@ const useSpeech = () => {
   // where calling stop() fails to stop recording when continuously listening
   // https://github.com/compulim/web-speech-cognitive-services/issues/166
   const stopRecognition = () => {
-    if (haveFinalResult) {
-      recognition?.abort();
-      stopping = false;
+    if (speechStarted) {
+      if (haveFinalResult) {
+        recognition?.abort();
+        stopping = false;
+      } else {
+        stopping = true;
+      }
     } else {
-      stopping = true;
+      recognition?.abort();
     }
   };
 
