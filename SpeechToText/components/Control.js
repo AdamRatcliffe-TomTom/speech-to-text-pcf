@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles, DefaultButton } from "@fluentui/react";
 import { Mic24Regular } from "@fluentui/react-icons";
 import CrossIcon from "../icons/CrossIcon";
@@ -86,7 +86,6 @@ const useStyles = ({ width, height }) =>
 const Control = ({
   width,
   height,
-  value,
   language,
   startRecordingText,
   stopRecordingText,
@@ -102,10 +101,6 @@ const Control = ({
   const recordingButtonText = isRecording
     ? stopRecordingText
     : startRecordingText;
-
-  useEffect(() => {
-    setText(value);
-  }, [value]);
 
   const toggleRecording = () => {
     const recording = !isRecording;
